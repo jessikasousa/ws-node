@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket.io example</title>
+    <script src="https://cdn.socket.io/4.5.0/socket.io.min.js"></script>
+</head>
+<body>
+    <button id="join">Join WebSocket</button>
+
+    <button id="send-message">Send Message</button>
+
+    <script type="text/javascript">
+        let socket;
+
+        document.getElementById('join').addEventListener('click', function() {
+            if(!socket) {
+                socket = new io('http://localhost:3333')
+            }
+        })
+
+        document.getElementById('send-message').addEventListener('click', function() {
+            if(!socket) {
+                return;
+            }
+            socket.emit('message', `Hello World ${Math.random()}`)
+        })
+    </script>
+</body>
+</html>
